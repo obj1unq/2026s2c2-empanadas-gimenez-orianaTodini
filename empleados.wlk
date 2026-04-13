@@ -72,9 +72,15 @@ object gimenez {
     empleado = _empleado
   }
   method pagarSueldo() {
+    self.validarFondoSuficiente()
     empleado.pagarSueldo()
     fondoParaSueldos = fondoParaSueldos - empleado.sueldo()
     empleado.cobrar()
+  }
+  method validarFondoSuficiente() {
+    if (fondoParaSueldos < empleado.sueldo()) {
+      self.error ("Fondo insuficiente para pagar"  + empleado.sueldo())
+    }
   }
   method fondoActual() {
     return fondoParaSueldos
